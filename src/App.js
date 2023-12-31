@@ -6,7 +6,7 @@ import Header from './Pages/header';
 import Plus from './Pages/plus';
 import { Routes, Route } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
-import Todoloist from './Pages/todoloist';
+//import Todoloist from './Pages/todoloist';
 
 
 function App() {
@@ -50,7 +50,7 @@ function App() {
       <div className='mainpage'>
         <div className="col-md-3"></div>
         <div className="col-md-4">
-          <Header />
+          <Header setValid={setValid}/>
           <Routes>
             <Route path="/" element={<Add />} />
             <Route path="/edit" element={<Edit valid={valid} todo={todo} handleSubmit={handleSubmit} handleChange={handleChange} handleChangeM={handleChangeM} title={title} message={message} />} />
