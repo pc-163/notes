@@ -102,7 +102,7 @@ padding: 0;
 .todolist li{
   background-color: rgb(255, 255, 255);
   border-radius: 12px;
-  padding: 20px;
+  padding: 10px;
 }
 
 .todolist li::marker{
@@ -122,12 +122,17 @@ padding: 0;
   cursor: pointer;
  
 }
-.todolist .edit-area, .todolist .remove-area{
-  
+.todolist .edit-area, .todolist .remove-area{  
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
+.todolist .edit-area{  
+  justify-content: space-between;
+}
+.todolist .remove-area{  
+  justify-content: space-evenly;
+}
+
 .todolist li:hover{
   --tw-scale-x: 1.1;
   --tw-scale-y: 1.1;
@@ -139,14 +144,35 @@ padding: 0;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 
 }
-.todolist .float-right i, .remove-area i:last-child{
+.todolist .float-right i{
   color: rgb(0, 0, 0);
-  padding: 0px;
   transition-duration: .5s;
   font-size: 18px;
   padding: 10px
 }
-.todolist .float-right i:hover, .remove-area i:last-child:hover{
-  background-color: rgb(0, 0, 0);
+.todolist .float-right i:hover{
+  background-color: rgb(0, 210, 200);
   color: rgb(255, 255, 255);
+}
+
+.remove-area{
+  background-color: rgb(0, 210, 200);
+  border-radius: 12px;
+  padding: 10px;
+}
+
+
+.remove-area i{
+  color: rgb(255, 255, 255);
+  padding: 0px;
+  transition-duration: .5s;
+  font-size: 22px;
+}
+.remove-area i:first-child:hover{
+  color: rgb(255, 0, 0);
+  transition-duration: .5s;
+}
+.remove-area i:last-child:hover{
+  color: rgb(0, 0, 0);
+  transition-duration: .5s;
 }

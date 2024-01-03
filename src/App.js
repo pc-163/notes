@@ -6,8 +6,6 @@ import Header from './Pages/header';
 import Plus from './Pages/plus';
 import { Routes, Route } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
-//import Todoloist from './Pages/todoloist';
-
 
 function App() {
 
@@ -15,6 +13,7 @@ function App() {
   const [message, setMessage] = useState('');
   const [todo, settodo] = useState([]);
   const [valid, setValid] = useState(true);
+  const [btn, setBtn] = useState(true);
 
 
   const unique_id = uuidv4();
@@ -25,6 +24,7 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    
     isValid ?
       settodo([...todo, { id: small_id, Title: title, Message: message }])
       : console.log('submit');
@@ -32,10 +32,6 @@ function App() {
     setTitle('');
     setMessage('');
     setValid(false);
-
-    // isValid 
-    // ? console.log("yes valid")
-    // : console.log("not valid");
   }
 
   const handleChange = (e) => {
@@ -45,6 +41,27 @@ function App() {
     setMessage(e.target.value);
   }
 
+//Edit and save again
+ const editTodo = (id) => {
+  setValid(true);
+  setBtn(false);
+  const selectedTodo = todo.find(todo => todo.id === id);
+  console.log(selectedTodo);
+  setTitle(selectedTodo.Title);
+  setMessage(selectedTodo.Message);
+}
+
+const updateTodo = () => {
+  settodo([...todo, { id: small_id, Title: title, Message: message }])
+  setTitle('');
+  setMessage('');
+  setValid(false);
+  //console.log('error', id);
+  // const updatedTodo = { ...todo.find((todo) => todo.id === id), Title: title, Message: message };
+  // const updatedTodos = todo.map((todo) => (todo.id === id ? updatedTodo : todo));
+  // setTodo(updatedTodos);
+};
+
   return (
     <div className="App">
       <div className='mainpage'>
@@ -53,7 +70,7 @@ function App() {
           <Header setValid={setValid}/>
           <Routes>
             <Route path="/" element={<Add />} />
-            <Route path="/edit" element={<Edit valid={valid} todo={todo} handleSubmit={handleSubmit} handleChange={handleChange} handleChangeM={handleChangeM} title={title} message={message} />} />
+            <Route path="/edit" element={<Edit btn={btn} editTodo={editTodo} valid={valid} todo={todo} handleSubmit={handleSubmit} handleChange={handleChange} handleChangeM={handleChangeM} title={title} message={message} />} />
           </Routes>
         </div>
         <div className="col-md-3">
