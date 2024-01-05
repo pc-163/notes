@@ -14,7 +14,7 @@ function App() {
   const [todo, settodo] = useState([]);
   const [valid, setValid] = useState(true);
   const [btn, setBtn] = useState(true);
-
+  const [arValid, setAvalid] = useState(true);
 
   const unique_id = uuidv4();
   const small_id = unique_id.slice(0, 8); //generate small id
@@ -46,7 +46,7 @@ function App() {
   setValid(true);
   setBtn(false);
   const selectedTodo = todo.find(todo => todo.id === id);
-  console.log(selectedTodo);
+  //console.log(selectedTodo);
   setTitle(selectedTodo.Title);
   setMessage(selectedTodo.Message);
 }
@@ -62,6 +62,22 @@ const updateTodo = () => {
   // setTodo(updatedTodos);
 };
 
+const deleteData = (id) => {
+  let filterdTodo = todo.filter((todo) => todo.id !== id);
+  //console.log(filterdTodo);
+  settodo(filterdTodo);
+
+}
+
+const changeData = (id) => {
+  const filterFortodo = todo.filter((todo) => todo.id === id);
+  console.log(filterFortodo.id);
+  settodo(filterFortodo);
+ 
+  setAvalid(true);
+}
+
+
   return (
     <div className="App">
       <div className='mainpage'>
@@ -70,7 +86,7 @@ const updateTodo = () => {
           <Header setValid={setValid}/>
           <Routes>
             <Route path="/" element={<Add />} />
-            <Route path="/edit" element={<Edit btn={btn} editTodo={editTodo} valid={valid} todo={todo} handleSubmit={handleSubmit} handleChange={handleChange} handleChangeM={handleChangeM} title={title} message={message} />} />
+            <Route path="/edit" element={<Edit arValid={arValid} setAvalid={setAvalid} changeData={changeData} deleteData={deleteData} btn={btn} editTodo={editTodo} valid={valid} todo={todo} handleSubmit={handleSubmit} handleChange={handleChange} handleChangeM={handleChangeM} title={title} message={message} />} />
           </Routes>
         </div>
         <div className="col-md-3">
