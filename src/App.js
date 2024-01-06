@@ -24,7 +24,7 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+
     isValid ?
       settodo([...todo, { id: small_id, Title: title, Message: message }])
       : console.log('submit');
@@ -41,41 +41,41 @@ function App() {
     setMessage(e.target.value);
   }
 
-//Edit and save again
- const editTodo = (id) => {
-  setValid(true);
-  setBtn(false);
-  const selectedTodo = todo.find(todo => todo.id === id);
-  //console.log(selectedTodo);
-  setTitle(selectedTodo.Title);
-  setMessage(selectedTodo.Message);
-}
+  //Edit and save again
+  const editTodo = (id) => {
+    setValid(true);
+    setBtn(false);
+    const selectedTodo = todo.find(todo => todo.id === id);
+    //console.log(selectedTodo);
+    setTitle(selectedTodo.Title);
+    setMessage(selectedTodo.Message);
+  }
 
-const updateTodo = () => {
-  settodo([...todo, { id: small_id, Title: title, Message: message }])
-  setTitle('');
-  setMessage('');
-  setValid(false);
-  //console.log('error', id);
-  // const updatedTodo = { ...todo.find((todo) => todo.id === id), Title: title, Message: message };
-  // const updatedTodos = todo.map((todo) => (todo.id === id ? updatedTodo : todo));
-  // setTodo(updatedTodos);
-};
+  const updateSubmit = (event) => {
+    event.preventDefault();
+    
+    console.log("fshfv");
+    setTitle('');
+    setMessage('');
+    setBtn(true);
+    setValid(false);
+  };
 
-const deleteData = (id) => {
-  let filterdTodo = todo.filter((todo) => todo.id !== id);
-  //console.log(filterdTodo);
-  settodo(filterdTodo);
 
-}
+  const deleteData = (id) => {
+    let filterdTodo = todo.filter((todo) => todo.id !== id);
+    //console.log(filterdTodo);
+    settodo(filterdTodo);
 
-const changeData = (id) => {
-  const filterFortodo = todo.filter((todo) => todo.id === id);
-  console.log(filterFortodo.id);
-  settodo(filterFortodo);
- 
-  setAvalid(true);
-}
+  }
+
+  const changeData = (id) => {
+    // const filterFortodo = todo.filter((todo) => todo.id === id);
+    // console.log(filterFortodo.id);
+    // settodo(filterFortodo);
+
+    setAvalid(true);
+  }
 
 
   return (
@@ -83,18 +83,19 @@ const changeData = (id) => {
       <div className='mainpage'>
         <div className="col-md-3"></div>
         <div className="col-md-4">
-          <Header setValid={setValid}/>
+          <Header setValid={setValid} />
           <Routes>
             <Route path="/" element={<Add />} />
-            <Route path="/edit" element={<Edit arValid={arValid} setAvalid={setAvalid} changeData={changeData} deleteData={deleteData} btn={btn} editTodo={editTodo} valid={valid} todo={todo} handleSubmit={handleSubmit} handleChange={handleChange} handleChangeM={handleChangeM} title={title} message={message} />} />
+            <Route path="/edit" element={<Edit updateSubmit={updateSubmit} arValid={arValid} setAvalid={setAvalid} changeData={changeData} deleteData={deleteData} btn={btn} editTodo={editTodo} valid={valid} todo={todo} handleSubmit={handleSubmit} handleChange={handleChange} handleChangeM={handleChangeM} title={title} message={message} />} />
           </Routes>
         </div>
         <div className="col-md-3">
         </div>
       </div>
-      <Plus setValid={setValid} />
+      <Plus setValid={setValid} setBtn={setBtn}/>
     </div>
   );
 }
 
 export default App;
+

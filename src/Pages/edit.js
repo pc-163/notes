@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Form } from 'semantic-ui-react'
 //import { useState } from 'react';
 
-const Edit = ({ arValid, setAvalid, changeData, deleteData, btn, handleSubmit, handleChangeM, handleChange, title, message, valid, todo, editTodo }) => {
+const Edit = ({ updateSubmit, arValid, setAvalid, changeData, deleteData, btn, handleSubmit, handleChangeM, handleChange, title, message, valid, todo, editTodo }) => {
 
 
   return (
@@ -14,25 +14,35 @@ const Edit = ({ arValid, setAvalid, changeData, deleteData, btn, handleSubmit, h
           <div className="dialog mainpage">
             <div className="col-md-3"></div>
             <div className="col-md-4 form-box">
-              <Form onSubmit={handleSubmit}>
-                <Form.Group widths='equal'>
-                  <Form.Input fluid placeholder='Title' required value={title} onChange={handleChange} />
-                </Form.Group>
+              {
+                btn ?
+                  <Form onSubmit={handleSubmit}>
+                    <Form.Group widths='equal'>
+                      <Form.Input fluid placeholder='Title' required value={title} onChange={handleChange} />
+                    </Form.Group>
 
-                <Form.TextArea placeholder='Message.....' required value={message} onChange={handleChangeM} />
-                {
-                  btn ?
+                    <Form.TextArea placeholder='Message.....' required value={message} onChange={handleChangeM} />
+
                     <Form.Button id="btn-1"><i className="fa-regular fa-floppy-disk"></i></Form.Button>
-                    :
-                    <Form.Button id="btn-2"><i className="fa-regular fa-floppy-disk"></i></Form.Button>
-                }
+                  </Form>
+                  :
+                  <Form onSubmit={updateSubmit}>
+                    <Form.Group widths='equal'>
+                      <Form.Input fluid placeholder='Update-Title' required value={title} onChange={handleChange} />
+                    </Form.Group>
 
-              </Form>
+                    <Form.TextArea placeholder='Update-Message.....' required value={message} onChange={handleChangeM} />
+
+                    <Form.Button id="btn-2"><i className="fa-regular fa-floppy-disk"></i></Form.Button>
+
+                  </Form>
+              }
+
+
             </div>
             <div className="col-md-3"></div>
 
           </div> : <div className="display-flex justify-content flex-wrap">
-
 
             {
               todo.map((items) => (

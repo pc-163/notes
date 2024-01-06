@@ -1,10 +1,11 @@
 import PlusIcon from '../Assets/Images/plus.svg';
 import { Link } from "react-router-dom";
 
-const Plus = ({setValid}) => {
+const Plus = ({setValid, setBtn}) => {
 
   const setClick =()=>{
     setValid(true);
+    setBtn(true);
   }
 
   return (
