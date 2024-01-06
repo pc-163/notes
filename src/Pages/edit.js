@@ -14,8 +14,7 @@ const Edit = ({ updateSubmit, arValid, setAvalid, changeData, deleteData, btn, h
           <div className="dialog mainpage">
             <div className="col-md-3"></div>
             <div className="col-md-4 form-box">
-              {
-                btn ?
+              
                   <Form onSubmit={handleSubmit}>
                     <Form.Group widths='equal'>
                       <Form.Input fluid placeholder='Title' required value={title} onChange={handleChange} />
@@ -25,18 +24,8 @@ const Edit = ({ updateSubmit, arValid, setAvalid, changeData, deleteData, btn, h
 
                     <Form.Button id="btn-1"><i className="fa-regular fa-floppy-disk"></i></Form.Button>
                   </Form>
-                  :
-                  <Form onSubmit={updateSubmit}>
-                    <Form.Group widths='equal'>
-                      <Form.Input fluid placeholder='Update-Title' required value={title} onChange={handleChange} />
-                    </Form.Group>
-
-                    <Form.TextArea placeholder='Update-Message.....' required value={message} onChange={handleChangeM} />
-
-                    <Form.Button id="btn-2"><i className="fa-regular fa-floppy-disk"></i></Form.Button>
-
-                  </Form>
-              }
+                 
+            
 
 
             </div>
